@@ -1,0 +1,169 @@
+(page) hoichoi Hackathon'26 — Participant Handbook
+  (callout) 
+    (text) Build production-grade AI systems for real problems in streaming, content, and media operations.
+    (text) 📅 Date: 26th September 2026 · 🕚 Time: 11:30 am IST · 📍 Location: Virtual · Solo participation only
+  (text) 
+  (table_of_contents) 
+  (header) About the Hackathon
+  (text) Welcome to the hoichoi Hackathon — a solo-participation virtual event bringing together students, developers, and AI/ML builders to solve real problems from streaming, content ops, and media pipelines, and build production-grade AI systems from scratch.
+  (text) This is not a team event. Each participant builds and submits solo, working through one problem statement of their choice, end to end.
+  (text) 
+  (text) What to expect:
+  (bulleted_list) Real-world problem statements drawn from streaming, content ops, and media pipelines
+  (bulleted_list) What "production-grade" actually means — and what judges look for
+  (bulleted_list) Tips for getting started — tools, approach, and scoping your solve
+  (bulleted_list) A live, working demo link and GitHub repo required at submission
+  (bulleted_list) Placement and hiring opportunities for standout participants — that's the real prize here
+  (text) 
+  (divider) 
+  (header) Timeline
+  (table) 
+    (table_row) Date / Time | Milestone
+    (table_row) 26th September 2026, 11:30 am IST | Hackathon starts
+    (table_row) 12 hours | Duration
+    (table_row) 12:30 am IST (1 hour after the 12-hour mark) | Submission window closes
+    (table_row) Within 2 weeks of the hackathon | Results announced
+  (text) 
+  (divider) 
+  (header) Rules
+  (bulleted_list) Solo participation only — no teams. Each participant builds and submits individually.
+  (bulleted_list) Pick one problem statement — choose any one of the four below and solve it end to end. You do not need to attempt more than one.
+  (bulleted_list) Judging criteria:
+    (bulleted_list) AI-native approach — how effectively you use AI as the core of your solution, not a bolt-on feature
+    (bulleted_list) Efficient, working solve — a real, functioning answer to the problem statement, built end to end
+  (text) 
+  (divider) 
+  (header) Problem Statements
+  (text) Choose one of the following four to solve.
+  (text) 
+  (toggle) Problem 1 — Context-Aware Video Segmentation & Intelligent Ad Placement
+    (text) Track: Video Understanding / AdTech
+    (text) 
+    (text) Ingest a long-form Bengali drama, segment it into semantically coherent scenes, score which scene boundaries are safe to interrupt, and match each surviving break to the most contextually appropriate brand from a synthetic catalogue — then emit a standards-compliant ad-break manifest and a playable demo.
+    (text) 
+    (text) Must get right
+    (table) 
+      (table_row) Is this timestamp a natural, non-jarring place to cut? (mid-sentence cuts are heavily penalised) | Where
+      (table_row) Is a break warranted here at all, given pacing rules (max breaks/hour, min gap, ad load %)? | Whether
+      (table_row) Which brand's creative belongs in this specific slot — dominant scene activity wins, negative_contexts are a hard block, not a soft penalty | What
+    (text) 
+    (text) MVP scope
+    (text) Video in → scenes segmented → break candidates scored → brand matched (must generalise to a 9th, unseen brand with zero code changes) → VMAP manifest + debug JSON + playable demo that actually cuts to the ad and resumes.
+    (text) 
+    (text) Toughest test
+    (text) Held-out videos are chosen specifically to punish naive scoring: judges check for mid-dialogue cuts and blind-viewing scene quality, and any negative-context brand placed against a blocked scene (e.g. a food ad after a funeral) in the held-out set scores that criterion zero, not low.
+    (text) 
+    (text) Auto-disqualifiers
+    (bulleted_list) Hard-coding timestamps or brand assignments for the sample videos
+    (bulleted_list) Any negative-context violation in the held-out set
+    (bulleted_list) Demo that cannot run live at presentation time
+    (bulleted_list) Substituting real company names for the synthetic brands
+    (text) 
+    (text) Resources: Content & sample assets folder <https://drive.google.com/drive/folders/1mmirzihj-SxaTTdH2248BrMKqBphZYEB>
+  (text) 
+  (toggle) Problem 2 — Automated Bengali Subtitle & Closed-Caption Pipeline with Speaker Diarization
+    (text) Track: Speech & Language / Media Localisation
+    (text) 
+    (text) Build an end-to-end pipeline that turns a Bengali-language video into a broadcast-quality Bengali closed-caption track (speaker-attributed, with non-speech sound events) plus translated English and Hindi subtitle tracks — timed to industry timed-text standards, with a QC report that tells a human exactly which cues to review.
+    (text) 
+    (text) Must get right
+    (table) 
+      (table_row) Recognition | What words were actually said, in Bengali — including correctly handling code-switched English inline (e.g. "ওর office-এ একটা meeting আছে")
+      (table_row) Attribution | Who said it, and exactly when — speaker IDs must stay stable across the whole runtime, no identity swaps
+      (table_row) Presentation | Can a human actually read this on screen — CPS limits, line length, no straddling a shot change
+    (text) 
+    (text) MVP scope
+    (text) Video in → Bengali ASR + diarization → speaker naming (cast list / vocative cues - optional) → forced alignment → cue segmentation → Bengali CC (WebVTT) + EN/HI subtitles (SRT) + QC report with a ranked review queue.
+    (text) 
+    (text) Toughest test
+    (text) Held-out episodes are checked directly for hallucinated subtitle text over silence or music, unflagged — this is the failure mode that makes automated captioning unshippable. The QC report's review queue is also compared against the actual error list, not just accepted at face value.
+    (text) 
+    (text) Auto-disqualifiers
+    (bulleted_list) Shipping a hand-corrected transcript for the sample episodes
+    (bulleted_list) Unflagged hallucinated text over silence/music in the held-out set
+    (bulleted_list) Demo that cannot run live at presentation time
+    (text) 
+    (text) Resources: Content & sample assets folder <https://drive.google.com/drive/folders/1mmirzihj-SxaTTdH2248BrMKqBphZYEB>
+  (text) 
+  (toggle) Problem 3 — AI Content Studio & Multi-Platform Command Center
+    (text) Track: Content Ops / Generative AI
+    (text) 
+    (text) Four integrated modules — Generative Studio, Publisher, Analytics Store, Cross-Platform Insights — that turn a single content brief into on-brand generated assets, platform-tailored captions, scheduled posts, unified engagement metrics, and a weekly report that feeds insights back into the next brief.
+    (text) 
+    (text) Must get right
+    (table) 
+      (table_row) Visual and copy must differ meaningfully per channel (tone, length, hashtag convention, CTA) — Bengali and English are both natively generated, not translated | Generation
+      (table_row) Nothing enters the publishing queue without explicit human approval; a discard-and-retry loop exists before that point | Approval gate
+      (table_row) Cross-platform insights compare like-for-like content side by side, not just separate per-platform totals | Comparison
+    (text) 
+    (text) MVP scope
+    (text) Brief in → generated image/video + tailored copy for 3 channels → approved → scheduled → "published" via mock channel adapter → metrics ingested → one cross-platform comparison + one weekly AI-written report, every claim citing post IDs.
+    (text) 
+    (text) Toughest test
+    (text) A Bengali brief is checked for genuinely native-sounding output, not machine translation. A post that violates a platform constraint (aspect ratio, file size, character limit) is submitted to the adapter layer and must be rejected, not silently accepted.
+    (text) 
+    (text) Auto-disqualifiers
+    (bulleted_list) One generated image cropped/relabeled per platform and called "tailored"
+    (bulleted_list) Generation with no approval gate before scheduling
+    (bulleted_list) Insights that live on a dashboard but never reach brief creation
+  (text) 
+  (toggle) Problem 4 — Creative Reformatting Engine
+    (text) Track: Media Pipeline / Computer Vision
+    (text) 
+    (text) A media pipeline that takes one master image and/or video for a title and produces every platform-ready ratio (16:9, 1:1, 9:16, 4:5) with subject-aware smart crop, a still pulled cleanly from video, and a subject-tracked, active-speaker-aware vertical reel — every derived asset validated against a machine-readable platform spec before it enters the library.
+    (text) 
+    (text) Must get right
+    (table) 
+      (table_row) Subject-aware smart crop that detects faces/subjects and composes around them — not the frame's centre | Crop
+      (table_row) Video reframing tracks the subject as they move; when multiple people are on screen, the crop follows whoever is speaking, in sync with audio | Reframe
+      (table_row) Every generated asset gets an automated pass/fail compliance report against the spec sheet before entering the library — no asset enters unvalidated | Validate
+    (text) 
+    (text) MVP scope
+    (text) One master image → 4 subject-aware ratio variants → validated → in the library, with single-variant regenerate working. One master video → one speaker-aware reel-format cutdown, plus one still extracted as an image variant.
+    (text) 
+    (text) Toughest test
+    (text) Test assets are chosen specifically to punish naive cropping (off-centre subjects, multiple faces) and every variant is inspected for cropped faces and violated safe zones. A two-person alternating-speaker clip is reframed and checked that the crop follows whoever is talking, not a fixed wide frame. Judges validate outputs against the spec sheet themselves and compare against the system's own verdict.
+    (text) 
+    (text) Auto-disqualifiers
+    (bulleted_list) Center-crop with a face-detection call bolted on that doesn't actually influence the crop box
+    (bulleted_list) Vertical video reframed once at frame 0 and held static for the whole clip
+    (bulleted_list) A validator that only checks dimensions
+    (text) Resources: Content & sample assets folder <https://drive.google.com/drive/folders/10Y4_n68IyqLMJAIGbTJH-FUS6pgzwm0L>
+  (divider) 
+  (header) How to Submit
+  (text) Your submission must include all three of the following:
+  (numbered_list) A live, working demo link — something judges can actually open and test
+  (numbered_list) A public GitHub repository link — your code, viewable by judges
+  (numbered_list) A brief explanatory video (under 5 minutes) — walking through your submission: what you built, how it works, and how it addresses the problem statement
+  (text) 
+  (callout) 
+    (text) Submit all three via the official submission form: hoichoi AI Builders Hackathon — Submission Form <https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=7yDlE8qfbU2ZL21gQnnL6d_-l9J40qFAqh5IAxJcBYpUNDFUV0szTjZZSURKVlNYWVdPNEczUUY5UC4u>
+  (text) 
+  (divider) 
+  (header) Life at hoichoi
+  (sub_header) Culture & How We Work
+  (text) At hoichoi, the best idea wins, not the biggest title. We operate in small, cross-functional teams where content, product, growth, and tech sit close together, argue productively, and occasionally steal each other's snacks. It's a lot like a kitchen during a house party: slightly chaotic, everyone's doing three things at once, but somehow the food comes out great.
+  (text) 
+  (text) Ownership here isn't a buzzword; it's the default setting. If something's broken, you don't file a ticket and wait. You're the person who notices the printer is jammed and just fixes it instead of pretending you didn't see it. We ship fast, measure what works, and iterate. Think less 'perfect deck' and more 'let's see if real viewers actually care.'
+  (text) 
+  (text) When big moments arrive, we stretch. But we're equally serious about keeping the pace sustainable, because burnt-out teams build neither great products nor great stories. If that sounds like your kind of chaos, we should talk.
+  (text) 
+  (divider) 
+  (header) FAQ
+  (toggle) Can I use any AI tool or model I want?
+    (text) Yes — the judging criteria focuses on how effectively you use AI as the core of your solution, not which specific tools or models you pick.
+  (text) 
+  (toggle) Can I switch problem statements after starting?
+    (text) You're free to change your mind early on, but we'd recommend locking in your choice quickly — 12 hours moves fast.
+  (text) 
+  (toggle) What if my demo breaks during judging?
+    (text) Make sure your live link is stable and tested before the submission window closes. "Demo that cannot run live" is an auto-disqualifier across every problem statement — test early, test often.
+  (text) 
+  (toggle) Is this really a hiring pipeline?
+    (text) Yes. Placement and hiring opportunities for standout participants are the primary incentive for this hackathon
+  (text) 
+  (divider) 
+  (header) Contact / Support
+  (text) Questions before, during, or after the hackathon? Reach out to:
+  (bulleted_list) Sushim Ranjan Dutta — sushim.dutta@hoichoi.tv <mailto:sushim.dutta@hoichoi.tv>
+  (bulleted_list) Rachit Yadav — rachit.yadav@hoichoi.tv <mailto:rachit.yadav@hoichoi.tv>

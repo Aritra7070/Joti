@@ -1,0 +1,11 @@
+name: keep-alive
+# Render's free tier sleeps after 15 min idle (≈1 min cold start). Ping the API so the live demo is always warm.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -m 60 https://hoichoi-hackathon-sisanta.onrender.com/health

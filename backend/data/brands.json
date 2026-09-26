@@ -1,0 +1,274 @@
+{
+  "schema": {
+    "id": "unique slug",
+    "name": "synthetic brand name (never a real company)",
+    "category": "free text",
+    "tagline": "shown on the creative",
+    "target_contexts": "tags from app/vocab.py CONTEXT_TAGS that this brand WANTS to appear next to",
+    "negative_contexts": "tags that are a HARD block — never placed after/before such a scene",
+    "negative_description": "free-text extra rule checked by the LLM gate, e.g. 'never after a scene showing food being wasted'",
+    "creative": {
+      "bg": "hex",
+      "fg": "hex",
+      "video_url": "optional mp4",
+      "image_url": "optional"
+    },
+    "category_tag": "one of app/vocab.py CATEGORY_TAGS — blocked next to in-content promotions of the same category"
+  },
+  "brands": [
+    {
+      "id": "rongin-cha",
+      "name": "Rongin Cha",
+      "category": "Tea",
+      "tagline": "প্রতিটি আড্ডার সঙ্গী — Every adda's companion",
+      "target_contexts": [
+        "family",
+        "home",
+        "kitchen",
+        "tea",
+        "morning",
+        "rain",
+        "comedy",
+        "warm"
+      ],
+      "negative_contexts": [
+        "funeral",
+        "death",
+        "violence",
+        "hospital",
+        "disaster"
+      ],
+      "negative_description": "Avoid scenes where a character is shown too ill or grieving to eat or drink.",
+      "creative": {
+        "bg": "#7a3e1d",
+        "fg": "#fff3e0"
+      },
+      "category_tag": "tea"
+    },
+    {
+      "id": "shonar-tori-jewellers",
+      "name": "Shonar Tori Jewellers",
+      "category": "Jewellery",
+      "tagline": "সোনার মতো সম্পর্ক — Bonds as pure as gold",
+      "target_contexts": [
+        "wedding",
+        "celebration",
+        "festival",
+        "romance",
+        "family",
+        "religious"
+      ],
+      "negative_contexts": [
+        "theft",
+        "crime",
+        "fraud",
+        "funeral",
+        "death",
+        "poverty",
+        "hunger",
+        "violence"
+      ],
+      "negative_description": "Never place after a scene where jewellery or valuables are stolen, pawned, or fought over.",
+      "creative": {
+        "bg": "#8a6d1f",
+        "fg": "#fff8dc"
+      },
+      "category_tag": "jewellery"
+    },
+    {
+      "id": "nabin-motors",
+      "name": "Nabin Motors",
+      "category": "Two-wheelers",
+      "tagline": "শহর তোমার, রাস্তা আমাদের — Your city, our roads",
+      "target_contexts": [
+        "travel",
+        "road",
+        "vehicle",
+        "city",
+        "morning",
+        "sports",
+        "office"
+      ],
+      "negative_contexts": [
+        "accident",
+        "injury",
+        "death",
+        "funeral",
+        "hospital",
+        "disaster"
+      ],
+      "negative_description": "Never place near a road accident, crash, or a character being hurt while travelling.",
+      "creative": {
+        "bg": "#1f3a5f",
+        "fg": "#e8f1ff"
+      },
+      "category_tag": "vehicle"
+    },
+    {
+      "id": "ghorer-swad",
+      "name": "Ghorer Swad",
+      "category": "Packaged foods & snacks",
+      "tagline": "মায়ের হাতের স্বাদ, প্যাকেটে — Mother's taste, in a packet",
+      "target_contexts": [
+        "eating",
+        "food",
+        "cooking",
+        "kitchen",
+        "family",
+        "festival",
+        "celebration",
+        "children"
+      ],
+      "negative_contexts": [
+        "funeral",
+        "death",
+        "illness",
+        "hospital",
+        "hunger",
+        "poverty",
+        "grief",
+        "disaster"
+      ],
+      "negative_description": "A food ad after a funeral, a hunger scene, or someone vomiting/sick is unacceptable.",
+      "creative": {
+        "bg": "#b23a2a",
+        "fg": "#fff5f0"
+      },
+      "category_tag": "food"
+    },
+    {
+      "id": "pathshala-app",
+      "name": "Pathshala Learning",
+      "category": "EdTech app",
+      "tagline": "শেখা হোক সহজ — Learning, made easy",
+      "target_contexts": [
+        "study",
+        "school",
+        "children",
+        "family",
+        "phone",
+        "home",
+        "morning"
+      ],
+      "negative_contexts": [
+        "violence",
+        "intimacy",
+        "alcohol",
+        "smoking",
+        "horror",
+        "crime"
+      ],
+      "negative_description": "Do not place next to adult, violent, or substance-use content.",
+      "creative": {
+        "bg": "#2d6a4f",
+        "fg": "#e9fff3"
+      },
+      "category_tag": "education"
+    },
+    {
+      "id": "takapay",
+      "name": "TakaPay",
+      "category": "UPI payments app",
+      "tagline": "এক ট্যাপে টাকা — Money in one tap",
+      "target_contexts": [
+        "shopping",
+        "market",
+        "money",
+        "business",
+        "office",
+        "phone",
+        "city",
+        "festival"
+      ],
+      "negative_contexts": [
+        "theft",
+        "fraud",
+        "crime",
+        "police",
+        "poverty",
+        "hunger"
+      ],
+      "negative_description": "Never place after a scam, robbery, or a character losing money — it reads as mockery.",
+      "creative": {
+        "bg": "#4b2c83",
+        "fg": "#f3ecff"
+      },
+      "category_tag": "finance"
+    },
+    {
+      "id": "sundari-ayurveda",
+      "name": "Sundari Ayurveda",
+      "category": "Skincare",
+      "tagline": "প্রকৃতির ছোঁয়ায় সুন্দর — Beautiful, naturally",
+      "target_contexts": [
+        "romance",
+        "wedding",
+        "celebration",
+        "morning",
+        "nature",
+        "rain",
+        "family"
+      ],
+      "negative_contexts": [
+        "hospital",
+        "injury",
+        "illness",
+        "horror",
+        "violence",
+        "death",
+        "funeral"
+      ],
+      "negative_description": "Avoid scenes with visible wounds, burns, or a character being mocked for their looks.",
+      "creative": {
+        "bg": "#a0526d",
+        "fg": "#fff0f5"
+      },
+      "category_tag": "skincare"
+    },
+    {
+      "id": "bhromon-travels",
+      "name": "Bhromon Travels",
+      "category": "Tour operator",
+      "tagline": "চলো বেরিয়ে পড়ি — Let's just go",
+      "target_contexts": [
+        "travel",
+        "train",
+        "nature",
+        "road",
+        "vehicle",
+        "village",
+        "celebration",
+        "family"
+      ],
+      "negative_contexts": [
+        "accident",
+        "disaster",
+        "death",
+        "funeral",
+        "crime",
+        "police",
+        "violence"
+      ],
+      "negative_description": "Never after a kidnapping, a missing-person scene, or a journey that ends badly.",
+      "creative": {
+        "bg": "#0f766e",
+        "fg": "#e6fffb"
+      },
+      "category_tag": "travel"
+    }
+  ],
+  "fallback": {
+    "id": "house-promo",
+    "name": "House Promo",
+    "category": "Platform promo",
+    "tagline": "পরের গল্পটা দেখুন — Watch the next story",
+    "target_contexts": [],
+    "negative_contexts": [],
+    "negative_description": "",
+    "creative": {
+      "bg": "#111111",
+      "fg": "#ffffff"
+    },
+    "category_tag": "entertainment"
+  }
+}

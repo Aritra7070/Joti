@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+/* Orientation variants used by the base-ui components (slider, separator, progress). */
+@custom-variant data-horizontal (&[data-orientation="horizontal"]);
+@custom-variant data-vertical (&[data-orientation="vertical"]);
+
+/* Design tokens — newsprint ground, ink rules, hard offset shadows. Sharp corners
+   everywhere: --radius is 0, so every rounded-* utility resolves to a square edge. */
+:root {
+  --radius: 0px;
+
+  --background: oklch(0.958 0.014 85);
+  --foreground: oklch(0.17 0.008 70);
+
+  --card: oklch(0.985 0.008 85);
+  --card-foreground: oklch(0.17 0.008 70);
+  --popover: oklch(0.985 0.008 85);
+  --popover-foreground: oklch(0.17 0.008 70);
+
+  --primary: oklch(0.55 0.21 27);
+  --primary-foreground: oklch(0.98 0.012 85);
+
+  --secondary: oklch(0.925 0.02 85);
+  --secondary-foreground: oklch(0.24 0.01 70);
+  --muted: oklch(0.925 0.018 85);
+  --muted-foreground: oklch(0.45 0.02 70);
+  --accent: oklch(0.93 0.03 85);
+  --accent-foreground: oklch(0.2 0.01 70);
+  --destructive: oklch(0.52 0.22 25);
+
+  --border: oklch(0.17 0.008 70);
+  --input: oklch(0.35 0.01 70);
+  --ring: oklch(0.55 0.21 27);
+
+  --success: oklch(0.48 0.14 150);
+  --warning: oklch(0.66 0.15 75);
+
+  --chart-1: oklch(0.58 0.14 155);
+  --chart-2: oklch(0.66 0.15 78);
+  --chart-3: oklch(0.53 0.19 25);
+  --chart-4: oklch(0.5 0.16 300);
+  --chart-5: oklch(0.53 0.13 225);
+
+  --shadow-soft: 3px 3px 0 oklch(0.17 0.008 70);
+  --shadow-float: 6px 6px 0 oklch(0.17 0.008 70);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --font-display: var(--font-display), "Alfa Slab One", ui-serif, Georgia, serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-float: var(--shadow-float);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: light;
+    overscroll-behavior: none;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  /* Quiet, neutral focus — never a coloured glow. */
+  :focus-visible {
+    outline: none;
+  }
+  input:focus-visible, textarea:focus-visible, select:focus-visible {
+    border-color: oklch(0.35 0.01 70);
+    box-shadow: none;
+  }
+  button:focus-visible, a:focus-visible, [role="slider"]:focus-visible {
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
+  }
+  ::placeholder {
+    color: oklch(0.62 0.015 70);
+  }
+  /* Anything clickable shows a pointer. */
+  button, a, label[for], summary, select, [role="button"], [role="slider"], input[type="file"], input[type="color"] {
+    cursor: pointer;
+  }
+  button:disabled, [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+  /* Slab display face for headings. Lives in @layer base so a text-* utility
+     (e.g. the landing hero) still wins over these defaults. */
+  h1, h2, h3, .display {
+    font-family: var(--font-display), "Alfa Slab One", ui-serif, Georgia, serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.015em;
+    line-height: 0.94;
+  }
+  h1 { font-size: 2.5rem; }
+  @media (min-width: 768px) { h1 { font-size: 3.25rem; } }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.125rem; }
+}
+
+/* A hard-edged card: 2px ink rule with a solid offset block behind it. */
+@utility boxed {
+  @apply border-2 border-foreground bg-card;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Small uppercase label in its own ruled box. */
+@utility stamp {
+  @apply inline-flex w-fit items-center gap-1.5 border-2 border-foreground px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.14em];
+}
+
+/* Dashed red rule used to separate editorial blocks. */
+@utility rule-red {
+  @apply border-t-2 border-dashed border-primary;
+}
+
+/* Big slab numerals, for the stat strip. */
+@utility numeral {
+  @apply font-display text-4xl leading-none tracking-tight;
+}
+
+/* Soft entrance for page content: fade + a few px of lift, staggered per element. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rise-1 { animation-delay: 0.05s; }
+.rise-2 { animation-delay: 0.15s; }
+.rise-3 { animation-delay: 0.25s; }
+.rise-4 { animation-delay: 0.35s; }
+.rise-5 { animation-delay: 0.5s; }
+@media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
