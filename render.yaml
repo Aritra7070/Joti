@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: adbreak-api
+    name: joti-api
     runtime: docker
     rootDir: backend
     dockerfilePath: ./Dockerfile
@@ -16,7 +16,9 @@ services:
       - key: MONGODB_URI
         sync: false
       - key: MONGODB_DB_NAME
-        value: cuepoint
+        value: joti
+      - key: JWT_SECRET
+        sync: false
       - key: CORS_ORIGINS
         value: "*"
       - key: CREATIVE_BASE_URL
