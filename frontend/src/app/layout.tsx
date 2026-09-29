@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Alfa_Slab_One, Inter, JetBrains_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Nav } from "@/components/Nav";
+import { Shell } from "@/components/Shell";
 import { JobWatcher } from "@/components/JobWatcher";
 import { AuthGate } from "@/components/AuthGate";
 import { Toaster } from "sonner";
@@ -13,18 +14,26 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 const display = Alfa_Slab_One({ subsets: ["latin"], weight: "400", variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "Joti — context-aware ad breaks",
-  description: "Scene-aware ad-break placement for long-form video: where to cut, whether to cut, and which brand belongs there.",
+  title: "Joti — Context-Aware Ad Placement",
+  description: "A showcase honoring the makers, visionaries and creators who turned a hard season into something rare.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable} ${display.variable}`}>
+      <head>
+        {/* Arsenica is a third-party CSS, not a Google font, so next/font cannot
+            host it; both are loaded as plain stylesheets. The no-page-custom-font
+            rule targets the Pages Router and does not apply here. */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" />
+        <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/cbb3cb559d2e4387e139cfb1656e31f5?family=Arsenica+Trial+Light" />
+      </head>
       <body className="min-h-screen font-sans">
         <TooltipProvider>
           <AuthGate>
             <Nav />
-            <main className="mx-auto w-full max-w-[1320px] px-5 py-12 lg:px-6">{children}</main>
+            <Shell>{children}</Shell>
           </AuthGate>
           <JobWatcher />
           <Toaster position="bottom-right" closeButton offset={24} gap={12}

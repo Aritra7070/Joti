@@ -169,3 +169,146 @@
 .rise-4 { animation-delay: 0.35s; }
 .rise-5 { animation-delay: 0.5s; }
 @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+
+/* ─────────────────────────── /showcase — cinematic landing page ───────────────────────────
+   Dark, self-contained. Nothing here is used by the rest of the app, and the
+   .gallery-page wrapper keeps the brutalist heading rules above out of it. */
+
+:root {
+  --font-serif: 'Arsenica Trial Light', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-arsenica: var(--font-serif);
+}
+
+.font-arsenica { font-family: var(--font-serif); }
+.font-inter { font-family: var(--font-sans); }
+
+/* Headings inside the showcase keep their own typography, not the slab display face. */
+.gallery-page :is(h1, h2, h3) {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: inherit;
+}
+
+/* Frosted pill with a gradient hairline border drawn by a masked ::before. */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.15) 80%, rgba(255, 255, 255, 0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-fade-up {
+  opacity: 0;
+  animation: hero-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes reveal-scale {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.reveal { opacity: 0; }
+.reveal.revealed { animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.reveal-scale { opacity: 0; }
+.reveal-scale.revealed { animation: reveal-scale 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+/* These three start invisible and are only shown by the observer. Anyone who cannot
+   run it — reduced motion, no JS — must still see the content. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-scale, .hero-fade-up {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ─────── Painted cloud bank (Hero → Showcase transition) ───────
+   Pure-CSS stand-in for the fog PNG: warm greige cloud blobs that melt into
+   the hero video above and the showcase art below. The bank itself is the
+   only layer allowed to overlap its neighbours (pointer-events-none). */
+.cloud-bank {
+  background:
+    radial-gradient(55% 85% at 12% 62%, rgba(233, 221, 211, 0.95), transparent 70%),
+    radial-gradient(48% 78% at 30% 44%, rgba(214, 198, 186, 0.9), transparent 70%),
+    radial-gradient(52% 82% at 50% 56%, rgba(235, 224, 214, 0.95), transparent 70%),
+    radial-gradient(48% 78% at 70% 42%, rgba(208, 191, 179, 0.9), transparent 70%),
+    radial-gradient(58% 88% at 88% 60%, rgba(233, 221, 211, 0.95), transparent 70%),
+    linear-gradient(to bottom,
+      transparent 0%,
+      rgba(203, 186, 172, 0.55) 42%,
+      rgba(190, 173, 160, 0.6) 60%,
+      transparent 100%);
+  filter: blur(20px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 38%, black 68%, transparent 99%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 38%, black 68%, transparent 99%);
+}
+/* ─────── Flying dove animations — three distinct full-screen drifting paths ───────
+   Doves stay fully visible for the bulk of each cycle (fade only on the
+   single end frames), stagger so at least one is on screen at any moment,
+   and travel edge-to-edge (viewport units) so they cover 100% of the hero. */
+@keyframes dove-fly-1 {
+  0%   { transform: translate(0, 0) rotate(-2deg);   opacity: 0; }
+  5%   { opacity: 1; }
+  50%  { transform: translate(18vw, -12vh) rotate(3deg); opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translate(34vw, -20vh) rotate(-1deg); opacity: 0; }
+}
+@keyframes dove-fly-2 {
+  0%   { transform: translate(0, 0) rotate(2deg) scaleX(-1); opacity: 0; }
+  5%   { opacity: 1; }
+  50%  { transform: translate(-20vw, -10vh) rotate(-3deg) scaleX(-1); opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translate(-36vw, -18vh) rotate(1deg) scaleX(-1); opacity: 0; }
+}
+@keyframes dove-fly-3 {
+  0%   { transform: translate(0, 0) rotate(1deg); opacity: 0; }
+  5%   { opacity: 1; }
+  50%  { transform: translate(-14vw, -10vh) rotate(-2deg); opacity: 1; }
+  95%  { opacity: 1; }
+  100% { transform: translate(-30vw, -22vh) rotate(2deg); opacity: 0; }
+}
+.dove-fly-1 {
+  animation: dove-fly-1 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+.dove-fly-2 {
+  animation: dove-fly-2 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2s infinite;
+}
+.dove-fly-3 {
+  animation: dove-fly-3 12s cubic-bezier(0.25, 0.46, 0.45, 0.94) 4s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dove-fly-1, .dove-fly-2, .dove-fly-3 {
+    animation: none !important;
+    opacity: 0.7 !important;
+  }
+}

@@ -15,7 +15,9 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const token = getToken();
     if (isPublic) {
-      if (token) api.me().then(() => router.replace("/")).catch(() => {});
+      if (token && (path === "/login" || path === "/signup")) {
+        api.me().then(() => router.replace("/episodes")).catch(() => {});
+      }
       setReady(true);
       return;
     }

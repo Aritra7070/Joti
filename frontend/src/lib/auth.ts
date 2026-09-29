@@ -22,4 +22,4 @@ export function signOutTo(expired: boolean) {
   if (typeof window !== "undefined") window.location.assign(expired ? "/login?expired=1" : "/signup");
 }
 
-export const PUBLIC_ROUTES = ["/login", "/signup"];
+export const PUBLIC_ROUTES = ["/", "/login", "/signup", "/showcase"];

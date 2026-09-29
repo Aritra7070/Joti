@@ -25,7 +25,7 @@ export function AuthForm({ mode }: { mode: "signup" | "login" }) {
     try {
       const r = mode === "signup" ? await api.signup(username, password) : await api.login(username, password);
       setSession(r.token, r.username);
-      router.replace("/");
+      router.replace("/episodes");
     } catch (e) { setErr(e instanceof Error ? e.message : String(e)); } finally { setBusy(false); }
   }
 
