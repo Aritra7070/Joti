@@ -6,7 +6,7 @@
 
 *Developed for the hoichoi Hackathon '26 (Problem 1: Context-Aware Ad Placement)*
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-hoichoi--hackathon--sisanta.vercel.app-ff0055?style=for-the-badge&logo=vercel)](https://hoichoi-hackathon-sisanta.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-hoichoi--hackathon--sisanta.vercel.app-ff0055?style=for-the-badge&logo=vercel)](https://joti-flame.vercel.app/)
 [![API Status](https://img.shields.io/badge/API-Render%20Live-46E3B7?style=for-the-badge&logo=render)](https://hoichoi-hackathon-sisanta.onrender.com)
 [![Next.js 16](https://img.shields.io/badge/Frontend-Next.js%2016%20%7C%20React%2019-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI%20%7C%20Python%203.12-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
@@ -365,7 +365,7 @@ All `/jobs` and `/brands` endpoints require an `Authorization: Bearer <token>` h
 
 ## 👥 Authors & Acknowledgments
 
-- **Built by**: [Aritra Roy](https://github.com/Aritra7070)
-- **Hackathon**: [hoichoi](https://www.hoichoi.tv/) Hackathon '26
+- **Built by**: [Aritra Giri](https://github.com/Aritra7070)
+- **Hackathon**: [hoichoi] Hackathon '26
 - **Problem Statement**: Problem 1 — *Context-Aware Video Segmentation & Intelligent Ad Placement*
 - **License**: MIT
